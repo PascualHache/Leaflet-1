@@ -9,12 +9,20 @@ L.control.scale().addTo(mapid);
 
 var latitud = 41.386889;
 var longitud = 2.166028;
+
+L.marker([latitud, longitud], { draggable: true }).addTo(mapid);
+
 var popup = L.popup();
 
-L.marker([latitud, longitud]).addTo(mapid).on('click', onClick);
-function onClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("<strong>Restaurant Centfocs</strong><br><br>Restaurante mediterráneo<br>Carrer de Balmes, 16, 08007 Barcelona")
-        .openOn(mapid);
+function onMapClick(e) {
+    console.log(e.latlng);
+    if (true) {
+        
+        popup
+            .setLatLng(e.latlng)
+            .setContent("Mis coordenadas son:<br><strong>Lat:" + e.latlng["lat"]+"  Len:"+e.latlng["lng"])
+            .openOn(mapid);
+    }
 }
+
+mapid.on('click', onMapClick);
